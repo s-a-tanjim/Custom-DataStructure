@@ -199,9 +199,3 @@ public:
         tail=NULL;
     }
 };
-
-int main()
-{
-
-    return 0;
-}
