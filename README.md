@@ -1,4 +1,4 @@
 # My Template Library
 
 Using STL (Standard Template Library) in C++ is too easy, right?
-What about creating them?
+But in most of the cases, we don't know how it works. Heres some code to understand some basic things of STL
