@@ -1,12 +1,15 @@
-#include<stdio.h>
-#include<iostream>
-using namespace std;
 /*
+Member Functions:
 constructors
 copy constructor
+destructor
 display
 size
-destructor
+clear
+empty
+at
+back
+front
 
 Operators overloaded:
 =   (char, char*, string)   returns string
@@ -20,7 +23,7 @@ Operators overloaded:
 >=  (char*, string)         returns bool     +Non Member
 <=  (char*, string)         returns bool     +Non Member
 
-[]
+[]  (int , char)
 <<  (string)                returns ostream  Non Member
 >>  (String)                returns istream  Non Member
 
@@ -32,10 +35,14 @@ str_cpy(int start , char* to , chat* from)   returns last index of to*
 int compare(const char *a,const char *b);    returns [0=equal(a==b)   1=greater(a>b)   -1= less(a<b)]
 
 
-Point:
+Note:
 * testing all boolean operators
 * checking memory leak
-* adding member functions
+* adding more member functions
+
+Upcoming functions:
+1. push_back
+2. pop_back
 
 */
 
@@ -75,6 +82,11 @@ public:
             ptr[i]=s.ptr[i];
         ptr[i]='\0';
     }
+    ~MyString()
+    {
+        delete[] ptr;
+        Size=0;
+    }
     void display()
     {
         for(int i=0;ptr[i]!='\0';i++)
@@ -85,10 +97,33 @@ public:
     {
         return Size;
     }
-    ~MyString()
+    void erase()
     {
         delete[] ptr;
+        ptr=new char;
+        ptr[0]='\0';
         Size=0;
+    }
+    bool empty()
+    {
+        if(ptr[0]=='\0' && Size==0) return true;
+        return false;
+    }
+    char at(int x)
+    {
+        return ptr[x];
+    }
+    char back()
+    {
+        if(ptr[0]!='\0')
+            return ptr[Size-1];
+        return '\0';
+    }
+    char front()
+    {
+        if(ptr[0]!='\0')
+            return ptr[0];
+        return '\0';
     }
 
 
@@ -473,10 +508,4 @@ istream &operator>>(istream &in , MyString &str)
     str.ptr=ptr;
     str.Size=str_len(ptr);
     return in;
-}
-
-int main()
-{
-
-    return 0;
 }
